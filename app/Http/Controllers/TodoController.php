@@ -23,8 +23,10 @@ class TodoController extends Controller
 
     public function index()
     {
-        $todos = $this->user->todos()->get(['title','body','completed','created_by']);
-        return response()->json($todos->toArray());
+        $todos = $this->user->todos()->get(['id','title','body','completed','created_by']);
+        // return response()->json($todos->toArray());
+        dd($todos);
+        return view('index')->with('todos',$todos);
     }
 
     /**

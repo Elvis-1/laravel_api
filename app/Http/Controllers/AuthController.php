@@ -35,7 +35,7 @@ class AuthController extends Controller
     $validator = Validator::make($request->all(),[
          'name'=>'required|string|between:2,100',
          'email'=> 'required|email|unique:users',
-         'password'=>'required|comfirmed|min:6'
+         'password'=>'required|confirmed|min:6'
     ]);
      if($validator->fails()){
          return response()->json([
@@ -70,7 +70,7 @@ class AuthController extends Controller
       return response()->json([
           'token' => $token,
           'token_type' => 'bearer',
-          'token_validity'=>$this->guard()->factory()->getTTL()*60
+          'token_validity'=>($this->guard()->factory()->getTTL()*60),
       ]);
   }
     
